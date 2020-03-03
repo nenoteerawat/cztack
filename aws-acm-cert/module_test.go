@@ -12,7 +12,7 @@ func TestAWSACMCertInit(t *testing.T) {
 	options := &terraform.Options{
 		TerraformDir: ".",
 	}
-	terraform.Init(t, options)
+	terraform.InitAndPlan(t, options)
 }
 
 func TestAWSACMCertInitAndApply(t *testing.T) {

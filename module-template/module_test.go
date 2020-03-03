@@ -10,5 +10,5 @@ func TestModule(t *testing.T) {
 	options := &terraform.Options{
 		TerraformDir: ".",
 	}
-	terraform.Init(t, options)
+	terraform.InitAndPlan(t, options)
 }

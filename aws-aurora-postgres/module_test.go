@@ -11,7 +11,7 @@ func TestAWSAuroraPostgresInit(t *testing.T) {
 	options := &terraform.Options{
 		TerraformDir: ".",
 	}
-	terraform.Init(t, options)
+	terraform.InitAndPlan(t, options)
 }
 
 func TestAWSAuroraPostgresInitAndApply(t *testing.T) {
