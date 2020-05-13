@@ -2,8 +2,8 @@ language: go
 go:
   - "1.14.1"
 sudo: false
-dist: trusty
-cache: pip
+dist: bionic
+python: 3.8
 install:
   # terraform
   - travis_retry wget -t 10 -O terraform.zip https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip
