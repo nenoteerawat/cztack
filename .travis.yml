@@ -20,6 +20,7 @@ install:
   - mv terraform-docs ~/bin/terraform-docs
   - chmod +x ~/bin/terraform-docs
   # awscli
+  - python -V
   - pip3 install awscli --upgrade --user
   - aws configure set aws_access_key_id     $CI1_AWS_ACCESS_KEY_ID     --profile cztack-ci-1
   - aws configure set aws_secret_access_key $CI1_AWS_SECRET_ACCESS_KEY --profile cztack-ci-1
