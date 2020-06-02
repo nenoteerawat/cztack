@@ -12,15 +12,13 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/homebrew/homebrew-bundle
-          key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile') }}
+          key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
       - name: pwd
         run: pwd
       - name: path
         run: echo $PATH
       - name: ls
         run: ls `pwd`
-      - name: brew versoin
-        run: brew --version
       - name: brew bundle install
         run: brew bundle install
       - run: aws configure set aws_access_key_id     ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}     --profile cztack-ci-1
