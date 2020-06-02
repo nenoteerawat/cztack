@@ -21,7 +21,7 @@ install:
   - chmod +x ~/bin/terraform-docs
   # awscli
   - pyenv install --list
-  - pyenv install 3.6.3
+  - pyenv install -f 3.6.3
   - pyenv global 3.6.3
   - pip install awscli --upgrade --user
   - aws configure set aws_access_key_id     $CI1_AWS_ACCESS_KEY_ID     --profile cztack-ci-1
