@@ -7,12 +7,13 @@ jobs:
     name: Build and Test
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: pwd
         run: pwd
       - name: path
         run: echo $PATH
       - name: ls
-        run: ls
+        run: ls `pwd`
       - name: brew versoin
         run: brew --version
       - name: brew bundle install
