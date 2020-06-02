@@ -28,7 +28,8 @@ jobs:
       - run: aws configure set aws_access_key_id     ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}     --profile cztack-ci-2
       - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY }} --profile cztack-ci-2
       - run: aws --profile cztack-ci-2 sts get-caller-identity
-
+      - run: tfenv install 0.12.24
+      - run: tfenv use 0.12.24
       - name: tests
         env:
           TEST_BUCKETS: 10
