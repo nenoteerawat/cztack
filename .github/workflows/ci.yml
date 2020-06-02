@@ -11,7 +11,7 @@ jobs:
       - name: cache
         uses: actions/cache@v2
         with:
-          path: /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/homebrew/homebrew-bundle
+          path: /home/linuxbrew/.linuxbrew
           key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
       - name: pwd
         run: pwd
