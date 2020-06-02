@@ -11,5 +11,7 @@ jobs:
         run: pwd
       - name: path
         run: echo $PATH
+      - name: ls
+        run: ls
       - name: brew bundle install
         run: brew bundle install
