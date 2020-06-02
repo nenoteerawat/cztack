@@ -20,6 +20,7 @@ install:
   - mv terraform-docs ~/bin/terraform-docs
   - chmod +x ~/bin/terraform-docs
   # awscli
+  - pyenv install --list
   - pyenv install 3.7.7
   - pyenv global 3.7.7
   - pip install awscli --upgrade --user
