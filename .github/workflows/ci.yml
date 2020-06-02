@@ -15,6 +15,7 @@ jobs:
           key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
       - name: pwd
         run: pwd
+      - run: brew config
       - name: path
         run: echo $PATH
       - name: ls
