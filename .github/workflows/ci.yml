@@ -4,12 +4,12 @@ on: [push]
 
 jobs:
   build:
-    name: Build
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
       - name: pwd
         run: pwd
       - name: path
         run: echo $PATH
-      - name: brew
-        run: brew list
+      - name: brew bundle install
+        run: brew bundle install
