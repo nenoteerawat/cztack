@@ -7,29 +7,36 @@ jobs:
     name: Build and Test
     runs-on: ubuntu-latest
     steps:
+      # CHECKOUT
       - uses: actions/checkout@v2
+
+      # CACHES
       - name: cache
         uses: actions/cache@v2
         with:
           path: /home/linuxbrew/.linuxbrew
           key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-      - name: pwd
-        run: pwd
-      - run: brew config
-      - name: path
-        run: echo $PATH
-      - name: ls
-        run: ls `pwd`
+      - uses: actions/cache@v2
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('go.sum') }}
+
+      # INSTALL
       - name: brew bundle install
         run: brew bundle install
-      - run: aws configure set aws_access_key_id     ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}     --profile cztack-ci-1
+
+      # AWS AUTH
+        - run: aws configure set aws_access_key_id     ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}     --profile cztack-ci-1
       - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY }} --profile cztack-ci-1
       - run: aws --profile cztack-ci-1 sts get-caller-identity
       - run: aws configure set aws_access_key_id     ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}     --profile cztack-ci-2
       - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY }} --profile cztack-ci-2
       - run: aws --profile cztack-ci-2 sts get-caller-identity
+
+      # TF setup
       - run: tfenv install 0.12.24
       - run: tfenv use 0.12.24
+
       - name: tests
         env:
           TEST_BUCKETS: 10
