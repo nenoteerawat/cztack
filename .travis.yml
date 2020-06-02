@@ -1,6 +1,8 @@
-language: go
+language: generic
 go:
   - "1.14.1"
+python:
+  - "3.8"
 sudo: false
 dist: trusty
 cache: pip
