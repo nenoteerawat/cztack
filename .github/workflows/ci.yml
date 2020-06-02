@@ -13,5 +13,7 @@ jobs:
         run: echo $PATH
       - name: ls
         run: ls
+      - name: brew versoin
+        run: brew --version
       - name: brew bundle install
         run: brew bundle install
