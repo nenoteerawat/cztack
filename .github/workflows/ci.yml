@@ -1,4 +1,4 @@
-name: Greet Everyone
+name: CI
 
 on: [push]
 
@@ -18,3 +18,10 @@ jobs:
         run: brew --version
       - name: brew bundle install
         run: brew bundle install
+      - run: pip install awscli --upgrade --user
+      - run: aws configure set aws_access_key_id     $CI1_AWS_ACCESS_KEY_ID     --profile cztack-ci-1
+      - run: aws configure set aws_secret_access_key $CI1_AWS_SECRET_ACCESS_KEY --profile cztack-ci-1
+      - run: aws --profile cztack-ci-1 sts get-caller-identity
+      - run: aws configure set aws_access_key_id     $CI2_AWS_ACCESS_KEY_ID     --profile cztack-ci-2
+      - run: aws configure set aws_secret_access_key $CI2_AWS_SECRET_ACCESS_KEY --profile cztack-ci-2
+      - run: aws --profile cztack-ci-2 sts get-caller-identity
