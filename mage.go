@@ -42,11 +42,8 @@ func newCi(name string) ciConfig {
 	return ciConfig{
 		Name: name,
 		On:   []string{"push"},
+		Jobs: map[string]ciJob{},
 	}
-}
-
-func newJob() ciJob {
-	return ciJob{}
 }
 
 func Ci() error {
@@ -70,7 +67,17 @@ func Ci() error {
 		d := strings.Replace(p, "github.com/chanzuckerberg/cztack/", "", 1)
 		if len(d) > 0 {
 			fmt.Println(d)
-
+			j := ciJob{
+				Name:           fmt.Sprintf("%s", d),
+				RunsOn:         "ubuntu-latest",
+				TimeoutMinutes: 45,
+				Steps: []ciStep{
+					{
+						Run: "env",
+					},
+				},
+			}
+			ci.Jobs[d] = j
 		}
 	}
 
