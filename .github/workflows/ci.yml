@@ -1,46 +1,46 @@
-name: CI
+# name: CI
 
-on: [push]
+# on: [push]
 
-jobs:
-  build:
-    name: Build and Test
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - run: env
-      # CHECKOUT
-      - uses: actions/checkout@v2
+# jobs:
+#   build:
+#     name: Build and Test
+#     runs-on: ubuntu-latest
+#     timeout-minutes: 3
+#     steps:
+#       - run: env
+#       # CHECKOUT
+#       - uses: actions/checkout@v2
 
-      # CACHES
-      - name: cache
-        uses: actions/cache@v2
-        with:
-          path: /home/linuxbrew/.linuxbrew
-          key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-      - uses: actions/cache@v2
-        with:
-          path: ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('go.sum') }}
+#       # CACHES
+#       - name: cache
+#         uses: actions/cache@v2
+#         with:
+#           path: /home/linuxbrew/.linuxbrew
+#           key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+#       - uses: actions/cache@v2
+#         with:
+#           path: ~/go/pkg/mod
+#           key: ${{ runner.os }}-go-${{ hashFiles('go.sum') }}
 
-      # INSTALL
-      - name: brew bundle install
-        run: brew bundle install
+#       # INSTALL
+#       - name: brew bundle install
+#         run: brew bundle install
 
-      # AWS AUTH
-      - run: aws configure set aws_access_key_id     ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}     --profile cztack-ci-1
-      - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY }} --profile cztack-ci-1
-      - run: aws --profile cztack-ci-1 sts get-caller-identity
-      - run: aws configure set aws_access_key_id     ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}     --profile cztack-ci-2
-      - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY }} --profile cztack-ci-2
-      - run: aws --profile cztack-ci-2 sts get-caller-identity
+#       # AWS AUTH
+#       - run: aws configure set aws_access_key_id     ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}     --profile cztack-ci-1
+#       - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY }} --profile cztack-ci-1
+#       - run: aws --profile cztack-ci-1 sts get-caller-identity
+#       - run: aws configure set aws_access_key_id     ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}     --profile cztack-ci-2
+#       - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY }} --profile cztack-ci-2
+#       - run: aws --profile cztack-ci-2 sts get-caller-identity
 
-      # TF setup
-      - run: tfenv install 0.12.24
-      - run: tfenv use 0.12.24
+#       # TF setup
+#       - run: tfenv install 0.12.24
+#       - run: tfenv use 0.12.24
 
-      - name: tests
-        env:
-          TEST_BUCKETS: 50
-          TEST_BUCKET_INDEX: 0
-        run: make test-ci
+#       - name: tests
+#         env:
+#           TEST_BUCKETS: 50
+#           TEST_BUCKET_INDEX: 0
+#         run: make test-ci
