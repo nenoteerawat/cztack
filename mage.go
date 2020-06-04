@@ -21,7 +21,7 @@ type ciJob struct {
 
 type ciStep struct {
 	Name string            `yaml:"name,omitempty"`
-	Run  string            `yaml:"run,omitempty,flow"`
+	Run  string            `yaml:"run,omitempty"`
 	Uses string            `yaml:"uses,omitempty"`
 	With map[string]string `yaml:"with,omitempty"`
 	// TODO
@@ -76,14 +76,14 @@ func Ci() error {
 					{
 						Uses: "actions/checkout@v2",
 					},
-					// {
-					// 	Name: "cache homebrew",
-					// 	Uses: "actions/cache@v2",
-					// 	With: map[string]string{
-					// 		"path": "/home/linuxbrew/.linuxbrew",
-					// 		"key":  "${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}",
-					// 	},
-					// },
+					{
+						Name: "cache homebrew",
+						Uses: "actions/cache@v2",
+						With: map[string]string{
+							"path": "/home/linuxbrew/.linuxbrew",
+							"key":  "${{ runner.os }}-brew-${{ hashFiles('Brewfile.lock.json') }}",
+						},
+					},
 					{
 						Run: "brew bundle install",
 					},
