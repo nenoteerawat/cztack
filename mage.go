@@ -64,7 +64,7 @@ func Ci() error {
 	fmt.Println(packages)
 	fmt.Println(len(packages))
 
-	ci := newCi(fmt.Sprintf("CI %s", d))
+	ci := newCi("CI")
 
 	for _, p := range packages {
 		d := strings.Replace(p, "github.com/chanzuckerberg/cztack/", "", 1)
@@ -74,10 +74,10 @@ func Ci() error {
 		}
 	}
 
-	out, err := yaml.Marshal(ci)
+	yml, err := yaml.Marshal(ci)
 	if err != nil {
 		return err
 	}
-	ioutil.WriteFile(filepath.Join(".github", "workflows", "ci2.yml"), out, 0644)
+	ioutil.WriteFile(filepath.Join(".github", "workflows", "ci2.yml"), yml, 0644)
 	return nil
 }
