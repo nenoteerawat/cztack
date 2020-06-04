@@ -9,6 +9,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-aurora:
     name: aws-aurora
@@ -17,6 +22,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-aurora-mysql:
     name: aws-aurora-mysql
@@ -25,6 +35,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-aurora-postgres:
     name: aws-aurora-postgres
@@ -33,6 +48,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-cloudwatch-log-group:
     name: aws-cloudwatch-log-group
@@ -41,6 +61,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-default-vpc-security:
     name: aws-default-vpc-security
@@ -49,6 +74,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-ecs-job:
     name: aws-ecs-job
@@ -57,6 +87,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-ecs-job-fargate:
     name: aws-ecs-job-fargate
@@ -65,6 +100,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-ecs-service:
     name: aws-ecs-service
@@ -73,6 +113,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-ecs-service-fargate:
     name: aws-ecs-service-fargate
@@ -81,6 +126,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-efs-volume:
     name: aws-efs-volume
@@ -89,6 +139,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-iam-ecs-task-role:
     name: aws-iam-ecs-task-role
@@ -97,6 +152,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-iam-group-assume-role:
     name: aws-iam-group-assume-role
@@ -105,6 +165,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-iam-group-console-login:
     name: aws-iam-group-console-login
@@ -113,6 +178,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-iam-instance-profile:
     name: aws-iam-instance-profile
@@ -121,6 +191,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-iam-password-policy:
     name: aws-iam-password-policy
@@ -129,6 +204,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-iam-policy-cwlogs:
     name: aws-iam-policy-cwlogs
@@ -137,6 +217,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-iam-role-bless:
     name: aws-iam-role-bless
@@ -145,6 +230,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-iam-role-cloudfront-poweruser:
     name: aws-iam-role-cloudfront-poweruser
@@ -153,6 +243,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-iam-role-crossacct:
     name: aws-iam-role-crossacct
@@ -161,6 +256,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-iam-role-ec2-poweruser:
     name: aws-iam-role-ec2-poweruser
@@ -169,6 +269,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-iam-role-ecs-poweruser:
     name: aws-iam-role-ecs-poweruser
@@ -177,6 +282,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-iam-role-infraci:
     name: aws-iam-role-infraci
@@ -185,6 +295,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-iam-role-poweruser:
     name: aws-iam-role-poweruser
@@ -193,6 +308,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-iam-role-readonly:
     name: aws-iam-role-readonly
@@ -201,6 +321,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-iam-role-route53domains-poweruser:
     name: aws-iam-role-route53domains-poweruser
@@ -209,6 +334,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-iam-role-security-audit:
     name: aws-iam-role-security-audit
@@ -217,6 +347,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-param:
     name: aws-param
@@ -225,6 +360,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-params-reader-policy:
     name: aws-params-reader-policy
@@ -233,6 +373,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-params-secrets-setup:
     name: aws-params-secrets-setup
@@ -241,6 +386,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-params-writer:
     name: aws-params-writer
@@ -249,6 +399,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-redis-node:
     name: aws-redis-node
@@ -257,6 +412,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-s3-private-bucket:
     name: aws-s3-private-bucket
@@ -265,6 +425,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-single-page-static-site:
     name: aws-single-page-static-site
@@ -273,6 +438,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-ssm-params:
     name: aws-ssm-params
@@ -281,6 +451,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   aws-ssm-params-writer:
     name: aws-ssm-params-writer
@@ -289,6 +464,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   bless-ca:
     name: bless-ca
@@ -297,6 +477,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   bless-ca_test:
     name: bless-ca_test
@@ -305,6 +490,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   github-webhooks-to-s3:
     name: github-webhooks-to-s3
@@ -313,6 +503,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   module-template:
     name: module-template
@@ -321,6 +516,11 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
   testutil:
     name: testutil
@@ -329,4 +529,9 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
+    - name: cache homebrew
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
+        path: /home/linuxbrew/.linuxbrew
     - run: brew bundle install
