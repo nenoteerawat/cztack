@@ -1,9 +1,0 @@
-name: CI aws-aurora-mysql
-"on":
-- push
-jobs:
-  build:
-    name: build and test
-    runs-on: ubuntu-latest
-    steps:
-    - run: env

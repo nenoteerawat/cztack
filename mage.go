@@ -38,22 +38,15 @@ type ciConfig struct {
 	Jobs map[string]ciJob
 }
 
-func newCi(name string) *ciConfig {
-	return &ciConfig{
+func newCi(name string) ciConfig {
+	return ciConfig{
 		Name: name,
 		On:   []string{"push"},
-		Jobs: map[string]ciJob{
-			"build": {
-				Name:   "build and test",
-				RunsOn: "ubuntu-latest",
-				Steps: []ciStep{
-					{
-						Run: "env",
-					},
-				},
-			},
-		},
 	}
+}
+
+func newJob() ciJob {
+	return ciJob{}
 }
 
 func Ci() error {
@@ -70,25 +63,21 @@ func Ci() error {
 
 	fmt.Println(packages)
 	fmt.Println(len(packages))
+
+	ci := newCi(fmt.Sprintf("CI %s", d))
+
 	for _, p := range packages {
 		d := strings.Replace(p, "github.com/chanzuckerberg/cztack/", "", 1)
 		if len(d) > 0 {
 			fmt.Println(d)
 
-			ci := newCi(fmt.Sprintf("CI %s", d))
-
-			out, err := yaml.Marshal(ci)
-
-			if err != nil {
-				return err
-			}
-
-			fileName := fmt.Sprintf("ci-%s.yml", strings.Replace(d, "/", "_", 1))
-			filePath := filepath.Join(".github", "workflows", fileName)
-			fmt.Println(filePath)
-			ioutil.WriteFile(filePath, out, 0644)
 		}
 	}
 
+	out, err := yaml.Marshal(ci)
+	if err != nil {
+		return err
+	}
+	ioutil.WriteFile(filepath.Join(".github", "workflows", "ci2.yml"), out, 0644)
 	return nil
 }

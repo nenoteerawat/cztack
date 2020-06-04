@@ -1,9 +1,0 @@
-name: CI aws-ecs-service-fargate
-"on":
-- push
-jobs:
-  build:
-    name: build and test
-    runs-on: ubuntu-latest
-    steps:
-    - run: env
