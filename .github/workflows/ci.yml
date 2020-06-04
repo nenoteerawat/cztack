@@ -6,7 +6,7 @@ jobs:
   build:
     name: Build and Test
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 10
     steps:
       # CHECKOUT
       - uses: actions/checkout@v2
@@ -42,4 +42,4 @@ jobs:
         env:
           TEST_BUCKETS: 50
           TEST_BUCKET_INDEX: 0
-        run: make test
+        run: make test-ci
