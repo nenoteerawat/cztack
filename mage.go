@@ -93,6 +93,9 @@ func Ci() error {
 					{Run: "aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }} --profile cztack-ci-2"},
 					{Run: "aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY }} --profile cztack-ci-2"},
 					{Run: "aws --profile cztack-ci-2 sts get-caller-identity"},
+					{Run: "tfenv install 0.12.24"},
+					{Run: "tfenv use 0.12.24"},
+					{Run: fmt.Sprintf("make test-ci TEST=./%s", p)},
 				},
 			}
 			ci.Jobs[name] = j
