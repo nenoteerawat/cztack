@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"gopkg.in/yaml.v1"
+	"gopkg.in/yaml.v3"
 )
 
 type ciJob struct {
@@ -21,7 +21,7 @@ type ciJob struct {
 
 type ciStep struct {
 	Name string            `yaml:"name,omitempty"`
-	Run  string            `yaml:"run,omitempty"`
+	Run  string            `yaml:"run,omitempty,flow"`
 	Uses string            `yaml:"uses,omitempty"`
 	With map[string]string `yaml:"with,omitempty"`
 	// TODO
