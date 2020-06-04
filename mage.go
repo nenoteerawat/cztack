@@ -88,13 +88,19 @@ func Ci() error {
 						Run: "brew bundle install",
 					},
 					{Run: `
-                        aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }} --profile cztack-ci-1;
-                        aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY }} --profile cztack-ci-1;
-                        aws --profile cztack-ci-1 sts get-caller-identity;
-                        aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }} --profile cztack-ci-2;
-                        aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY }} --profile cztack-ci-2;
-                        aws --profile cztack-ci-2 sts get-caller-identity;
+                        cat << EOF > ~/.aws/credentials
+                        [cztack-ci-1]
+                        aws_access_key_id=${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+                        aws_secret_access_key=${{ secrets.CI1_AWS_SECRET_ACCESS_KEY }}
+
+                        [cztack-ci-2]
+                        aws_access_key_id=${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+                        aws_secret_access_key=${{ secrets.CI2_AWS_SECRET_ACCESS_KEY }}
+                        EOF
+
                     `},
+					// aws --profile cztack-ci-1 sts get-caller-identity;
+					// aws --profile cztack-ci-2 sts get-caller-identity;
 					// {Run: "tfenv install 0.12.24"},
 					// {Run: "tfenv use 0.12.24"},
 					// {Run: fmt.Sprintf("make test-ci TEST=./%s", p)},
