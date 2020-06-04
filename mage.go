@@ -65,10 +65,12 @@ func Ci() error {
 
 	for _, p := range packages {
 		d := strings.Replace(p, "github.com/chanzuckerberg/cztack/", "", 1)
+
 		if len(d) > 0 {
 			fmt.Println(d)
+			name := strings.Replace(d, "/", "_", -1)
 			j := ciJob{
-				Name:           fmt.Sprintf("%s", d),
+				Name:           name,
 				RunsOn:         "ubuntu-latest",
 				TimeoutMinutes: 45,
 				Steps: []ciStep{
@@ -77,7 +79,7 @@ func Ci() error {
 					},
 				},
 			}
-			ci.Jobs[d] = j
+			ci.Jobs[name] = j
 		}
 	}
 

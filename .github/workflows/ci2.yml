@@ -224,8 +224,8 @@ jobs:
     timeout-minutes: 45
     steps:
     - run: env
-  bless-ca/test:
-    name: bless-ca/test
+  bless-ca_test:
+    name: bless-ca_test
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
