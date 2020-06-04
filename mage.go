@@ -77,6 +77,12 @@ func Ci() error {
 					{
 						Run: "env",
 					},
+					{
+						Uses: "actions/checkout@v2",
+					},
+					{
+						Run: "brew bundle install",
+					},
 				},
 			}
 			ci.Jobs[name] = j
