@@ -25,6 +25,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-acm-cert
   aws-aurora:
     name: aws-aurora
     runs-on: ubuntu-latest
@@ -48,6 +51,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-aurora
   aws-aurora-mysql:
     name: aws-aurora-mysql
     runs-on: ubuntu-latest
@@ -71,6 +77,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-aurora-mysql
   aws-aurora-postgres:
     name: aws-aurora-postgres
     runs-on: ubuntu-latest
@@ -94,6 +103,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-aurora-postgres
   aws-cloudwatch-log-group:
     name: aws-cloudwatch-log-group
     runs-on: ubuntu-latest
@@ -117,6 +129,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-cloudwatch-log-group
   aws-default-vpc-security:
     name: aws-default-vpc-security
     runs-on: ubuntu-latest
@@ -140,6 +155,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-default-vpc-security
   aws-ecs-job:
     name: aws-ecs-job
     runs-on: ubuntu-latest
@@ -163,6 +181,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-ecs-job
   aws-ecs-job-fargate:
     name: aws-ecs-job-fargate
     runs-on: ubuntu-latest
@@ -186,6 +207,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-ecs-job-fargate
   aws-ecs-service:
     name: aws-ecs-service
     runs-on: ubuntu-latest
@@ -209,6 +233,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-ecs-service
   aws-ecs-service-fargate:
     name: aws-ecs-service-fargate
     runs-on: ubuntu-latest
@@ -232,6 +259,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-ecs-service-fargate
   aws-efs-volume:
     name: aws-efs-volume
     runs-on: ubuntu-latest
@@ -255,6 +285,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-efs-volume
   aws-iam-ecs-task-role:
     name: aws-iam-ecs-task-role
     runs-on: ubuntu-latest
@@ -278,6 +311,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-ecs-task-role
   aws-iam-group-assume-role:
     name: aws-iam-group-assume-role
     runs-on: ubuntu-latest
@@ -301,6 +337,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-group-assume-role
   aws-iam-group-console-login:
     name: aws-iam-group-console-login
     runs-on: ubuntu-latest
@@ -324,6 +363,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-group-console-login
   aws-iam-instance-profile:
     name: aws-iam-instance-profile
     runs-on: ubuntu-latest
@@ -347,6 +389,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-instance-profile
   aws-iam-password-policy:
     name: aws-iam-password-policy
     runs-on: ubuntu-latest
@@ -370,6 +415,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-password-policy
   aws-iam-policy-cwlogs:
     name: aws-iam-policy-cwlogs
     runs-on: ubuntu-latest
@@ -393,6 +441,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-policy-cwlogs
   aws-iam-role-bless:
     name: aws-iam-role-bless
     runs-on: ubuntu-latest
@@ -416,6 +467,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-bless
   aws-iam-role-cloudfront-poweruser:
     name: aws-iam-role-cloudfront-poweruser
     runs-on: ubuntu-latest
@@ -439,6 +493,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-cloudfront-poweruser
   aws-iam-role-crossacct:
     name: aws-iam-role-crossacct
     runs-on: ubuntu-latest
@@ -462,6 +519,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-crossacct
   aws-iam-role-ec2-poweruser:
     name: aws-iam-role-ec2-poweruser
     runs-on: ubuntu-latest
@@ -485,6 +545,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-ec2-poweruser
   aws-iam-role-ecs-poweruser:
     name: aws-iam-role-ecs-poweruser
     runs-on: ubuntu-latest
@@ -508,6 +571,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-ecs-poweruser
   aws-iam-role-infraci:
     name: aws-iam-role-infraci
     runs-on: ubuntu-latest
@@ -531,6 +597,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-infraci
   aws-iam-role-poweruser:
     name: aws-iam-role-poweruser
     runs-on: ubuntu-latest
@@ -554,6 +623,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-poweruser
   aws-iam-role-readonly:
     name: aws-iam-role-readonly
     runs-on: ubuntu-latest
@@ -577,6 +649,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-readonly
   aws-iam-role-route53domains-poweruser:
     name: aws-iam-role-route53domains-poweruser
     runs-on: ubuntu-latest
@@ -600,6 +675,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-route53domains-poweruser
   aws-iam-role-security-audit:
     name: aws-iam-role-security-audit
     runs-on: ubuntu-latest
@@ -623,6 +701,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-security-audit
   aws-param:
     name: aws-param
     runs-on: ubuntu-latest
@@ -646,6 +727,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-param
   aws-params-reader-policy:
     name: aws-params-reader-policy
     runs-on: ubuntu-latest
@@ -669,6 +753,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-params-reader-policy
   aws-params-secrets-setup:
     name: aws-params-secrets-setup
     runs-on: ubuntu-latest
@@ -692,6 +779,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-params-secrets-setup
   aws-params-writer:
     name: aws-params-writer
     runs-on: ubuntu-latest
@@ -715,6 +805,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-params-writer
   aws-redis-node:
     name: aws-redis-node
     runs-on: ubuntu-latest
@@ -738,6 +831,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-redis-node
   aws-s3-private-bucket:
     name: aws-s3-private-bucket
     runs-on: ubuntu-latest
@@ -761,6 +857,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-s3-private-bucket
   aws-single-page-static-site:
     name: aws-single-page-static-site
     runs-on: ubuntu-latest
@@ -784,6 +883,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-single-page-static-site
   aws-ssm-params:
     name: aws-ssm-params
     runs-on: ubuntu-latest
@@ -807,6 +909,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-ssm-params
   aws-ssm-params-writer:
     name: aws-ssm-params-writer
     runs-on: ubuntu-latest
@@ -830,6 +935,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-ssm-params-writer
   bless-ca:
     name: bless-ca
     runs-on: ubuntu-latest
@@ -853,6 +961,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/bless-ca
   bless-ca_test:
     name: bless-ca_test
     runs-on: ubuntu-latest
@@ -876,6 +987,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/bless-ca/test
   github-webhooks-to-s3:
     name: github-webhooks-to-s3
     runs-on: ubuntu-latest
@@ -899,6 +1013,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/github-webhooks-to-s3
   module-template:
     name: module-template
     runs-on: ubuntu-latest
@@ -922,6 +1039,9 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/module-template
   testutil:
     name: testutil
     runs-on: ubuntu-latest
@@ -945,3 +1065,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: tfenv install 0.12.24
+    - run: tfenv use 0.12.24
+    - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/testutil
