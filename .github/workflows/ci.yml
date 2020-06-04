@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - run: env
       # CHECKOUT
       - uses: actions/checkout@v2
 
