@@ -107,6 +107,7 @@ func Ci() error {
 				},
 			}
 			ci.Jobs[name] = j
+			break
 		}
 	}
 
