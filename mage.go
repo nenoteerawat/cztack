@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"gopkg.in/yaml.v3"
+	"gopkg.in/yaml.v1"
 )
 
 type ciJob struct {
@@ -81,33 +81,24 @@ func Ci() error {
 						Uses: "actions/cache@v2",
 						With: map[string]string{
 							"path": "/home/linuxbrew/.linuxbrew",
-							"key":  "${{ runner.os }}-brew-${{ hashFiles('Brewfile.lock.json') }}",
+							"key":  "${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}",
 						},
 					},
 					{
 						Run: "brew bundle install",
 					},
-					{Run: `
-                        cat << EOF > ~/.aws/credentials
-                        [cztack-ci-1]
-                        aws_access_key_id=${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
-                        aws_secret_access_key=${{ secrets.CI1_AWS_SECRET_ACCESS_KEY }}
-
-                        [cztack-ci-2]
-                        aws_access_key_id=${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
-                        aws_secret_access_key=${{ secrets.CI2_AWS_SECRET_ACCESS_KEY }}
-                        EOF
-
-                    `},
+					{Run: "aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }} --profile cztack-ci-1"},
+					{Run: "aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY }} --profile cztack-ci-1"},
 					{Run: "aws --profile cztack-ci-1 sts get-caller-identity"},
+					{Run: "aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }} --profile cztack-ci-2"},
+					{Run: "aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY }} --profile cztack-ci-2"},
 					{Run: "aws --profile cztack-ci-2 sts get-caller-identity"},
-					// {Run: "tfenv install 0.12.24"},
-					// {Run: "tfenv use 0.12.24"},
-					// {Run: fmt.Sprintf("make test-ci TEST=./%s", p)},
+					{Run: "tfenv install 0.12.24"},
+					{Run: "tfenv use 0.12.24"},
+					{Run: fmt.Sprintf("make test-ci TEST=./%s", p)},
 				},
 			}
 			ci.Jobs[name] = j
-			break
 		}
 	}
 
