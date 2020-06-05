@@ -94,7 +94,7 @@ func Ci() error {
 					{Run: "aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }} --profile cztack-ci-2"},
 					{Run: "aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY }} --profile cztack-ci-2"},
 					{Run: "aws --profile cztack-ci-2 sts get-caller-identity"},
-					{Run: fmt.Sprintf("make test-ci TEST=./%s", p)},
+					{Run: fmt.Sprintf("make test-ci TEST=./%s", d)},
 				},
 			}
 			ci.Jobs[name] = j
