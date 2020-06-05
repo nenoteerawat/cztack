@@ -76,11 +76,8 @@ test: fmt
 .PHONY: test
 
 test-ci:
-	@echo "running tests $(TESTS)"
-	@echo $(TEST_BUCKET_INDEX)
-	@echo $(TEST_BUCKETS)
-	exit
-	go test -count=1 -parallel 10 -test.timeout 45m $(TESTS)
+	@echo "running test $(TEST)"
+	go test -count=1 -parallel 10 -test.timeout 45m $(TEST)
 .PHONY: test
 
 deps:
