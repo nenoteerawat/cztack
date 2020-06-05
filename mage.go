@@ -80,6 +80,7 @@ func Ci() error {
 						Uses: "hashicorp/setup-terraform@v1",
 						With: map[string]string{
 							"terraform_version": "0.12.24",
+							"terraform_wrapper": "false",
 						},
 					},
 					{
