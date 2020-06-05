@@ -99,8 +99,8 @@ func Ci() error {
                         EOF
 
                     `},
-					// aws --profile cztack-ci-1 sts get-caller-identity;
-					// aws --profile cztack-ci-2 sts get-caller-identity;
+					{Run: "aws --profile cztack-ci-1 sts get-caller-identity"},
+					{Run: "aws --profile cztack-ci-2 sts get-caller-identity"},
 					// {Run: "tfenv install 0.12.24"},
 					// {Run: "tfenv use 0.12.24"},
 					// {Run: fmt.Sprintf("make test-ci TEST=./%s", p)},
