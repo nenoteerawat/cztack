@@ -81,13 +81,13 @@ func Ci() error {
 						With: map[string]string{
 							"terraform_version": "0.12.24",
 						},
-                    },
-                    {
-                        Uses: "actions/setup-go@v2"
-                        With: map[string]string {
-                            "go-version": "1.14.3",
-                        },
-                    },
+					},
+					{
+						Uses: "actions/setup-go@v2",
+						With: map[string]string{
+							"go-version": "1.14.3",
+						},
+					},
 					{Run: "aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }} --profile cztack-ci-1"},
 					{Run: "aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY }} --profile cztack-ci-1"},
 					{Run: "aws --profile cztack-ci-1 sts get-caller-identity"},

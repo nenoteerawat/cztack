@@ -9,12 +9,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -25,8 +25,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-acm-cert
   aws-aurora:
     name: aws-aurora
@@ -35,12 +33,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -51,8 +49,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-aurora
   aws-aurora-mysql:
     name: aws-aurora-mysql
@@ -61,12 +57,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -77,8 +73,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-aurora-mysql
   aws-aurora-postgres:
     name: aws-aurora-postgres
@@ -87,12 +81,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -103,8 +97,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-aurora-postgres
   aws-cloudwatch-log-group:
     name: aws-cloudwatch-log-group
@@ -113,12 +105,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -129,8 +121,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-cloudwatch-log-group
   aws-default-vpc-security:
     name: aws-default-vpc-security
@@ -139,12 +129,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -155,8 +145,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-default-vpc-security
   aws-ecs-job:
     name: aws-ecs-job
@@ -165,12 +153,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -181,8 +169,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-ecs-job
   aws-ecs-job-fargate:
     name: aws-ecs-job-fargate
@@ -191,12 +177,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -207,8 +193,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-ecs-job-fargate
   aws-ecs-service:
     name: aws-ecs-service
@@ -217,12 +201,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -233,8 +217,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-ecs-service
   aws-ecs-service-fargate:
     name: aws-ecs-service-fargate
@@ -243,12 +225,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -259,8 +241,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-ecs-service-fargate
   aws-efs-volume:
     name: aws-efs-volume
@@ -269,12 +249,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -285,8 +265,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-efs-volume
   aws-iam-ecs-task-role:
     name: aws-iam-ecs-task-role
@@ -295,12 +273,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -311,8 +289,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-ecs-task-role
   aws-iam-group-assume-role:
     name: aws-iam-group-assume-role
@@ -321,12 +297,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -337,8 +313,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-group-assume-role
   aws-iam-group-console-login:
     name: aws-iam-group-console-login
@@ -347,12 +321,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -363,8 +337,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-group-console-login
   aws-iam-instance-profile:
     name: aws-iam-instance-profile
@@ -373,12 +345,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -389,8 +361,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-instance-profile
   aws-iam-password-policy:
     name: aws-iam-password-policy
@@ -399,12 +369,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -415,8 +385,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-password-policy
   aws-iam-policy-cwlogs:
     name: aws-iam-policy-cwlogs
@@ -425,12 +393,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -441,8 +409,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-policy-cwlogs
   aws-iam-role-bless:
     name: aws-iam-role-bless
@@ -451,12 +417,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -467,8 +433,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-bless
   aws-iam-role-cloudfront-poweruser:
     name: aws-iam-role-cloudfront-poweruser
@@ -477,12 +441,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -493,8 +457,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-cloudfront-poweruser
   aws-iam-role-crossacct:
     name: aws-iam-role-crossacct
@@ -503,12 +465,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -519,8 +481,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-crossacct
   aws-iam-role-ec2-poweruser:
     name: aws-iam-role-ec2-poweruser
@@ -529,12 +489,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -545,8 +505,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-ec2-poweruser
   aws-iam-role-ecs-poweruser:
     name: aws-iam-role-ecs-poweruser
@@ -555,12 +513,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -571,8 +529,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-ecs-poweruser
   aws-iam-role-infraci:
     name: aws-iam-role-infraci
@@ -581,12 +537,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -597,8 +553,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-infraci
   aws-iam-role-poweruser:
     name: aws-iam-role-poweruser
@@ -607,12 +561,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -623,8 +577,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-poweruser
   aws-iam-role-readonly:
     name: aws-iam-role-readonly
@@ -633,12 +585,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -649,8 +601,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-readonly
   aws-iam-role-route53domains-poweruser:
     name: aws-iam-role-route53domains-poweruser
@@ -659,12 +609,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -675,8 +625,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-route53domains-poweruser
   aws-iam-role-security-audit:
     name: aws-iam-role-security-audit
@@ -685,12 +633,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -701,8 +649,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-iam-role-security-audit
   aws-param:
     name: aws-param
@@ -711,12 +657,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -727,8 +673,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-param
   aws-params-reader-policy:
     name: aws-params-reader-policy
@@ -737,12 +681,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -753,8 +697,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-params-reader-policy
   aws-params-secrets-setup:
     name: aws-params-secrets-setup
@@ -763,12 +705,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -779,8 +721,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-params-secrets-setup
   aws-params-writer:
     name: aws-params-writer
@@ -789,12 +729,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -805,8 +745,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-params-writer
   aws-redis-node:
     name: aws-redis-node
@@ -815,12 +753,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -831,8 +769,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-redis-node
   aws-s3-private-bucket:
     name: aws-s3-private-bucket
@@ -841,12 +777,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -857,8 +793,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-s3-private-bucket
   aws-single-page-static-site:
     name: aws-single-page-static-site
@@ -867,12 +801,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -883,8 +817,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-single-page-static-site
   aws-ssm-params:
     name: aws-ssm-params
@@ -893,12 +825,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -909,8 +841,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-ssm-params
   aws-ssm-params-writer:
     name: aws-ssm-params-writer
@@ -919,12 +849,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -935,8 +865,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/aws-ssm-params-writer
   bless-ca:
     name: bless-ca
@@ -945,12 +873,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -961,8 +889,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/bless-ca
   bless-ca_test:
     name: bless-ca_test
@@ -971,12 +897,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -987,8 +913,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/bless-ca/test
   github-webhooks-to-s3:
     name: github-webhooks-to-s3
@@ -997,12 +921,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -1013,8 +937,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/github-webhooks-to-s3
   module-template:
     name: module-template
@@ -1023,12 +945,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -1039,8 +961,6 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/module-template
   testutil:
     name: testutil
@@ -1049,12 +969,12 @@ jobs:
     steps:
     - run: env
     - uses: actions/checkout@v2
-    - name: cache homebrew
-      uses: actions/cache@v2
+    - uses: hashicorp/setup-terraform@v1
       with:
-        key: ${{ runner.os }}-build-brew-${{ hashFiles('Brewfile.lock.json') }}
-        path: /home/linuxbrew/.linuxbrew
-    - run: brew bundle install
+        terraform_version: 0.12.24
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
     - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
         --profile cztack-ci-1
     - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
@@ -1065,6 +985,4 @@ jobs:
     - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
         }} --profile cztack-ci-2
     - run: aws --profile cztack-ci-2 sts get-caller-identity
-    - run: tfenv install 0.12.24
-    - run: tfenv use 0.12.24
     - run: make test-ci TEST=./github.com/chanzuckerberg/cztack/testutil
