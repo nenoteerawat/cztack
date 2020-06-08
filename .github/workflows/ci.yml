@@ -1,0 +1,1029 @@
+name: CI
+"on":
+- push
+jobs:
+  aws-acm-cert:
+    name: aws-acm-cert
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-acm-cert
+  aws-aurora:
+    name: aws-aurora
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-aurora
+  aws-aurora-mysql:
+    name: aws-aurora-mysql
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-aurora-mysql
+  aws-aurora-postgres:
+    name: aws-aurora-postgres
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-aurora-postgres
+  aws-cloudwatch-log-group:
+    name: aws-cloudwatch-log-group
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-cloudwatch-log-group
+  aws-default-vpc-security:
+    name: aws-default-vpc-security
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-default-vpc-security
+  aws-ecs-job:
+    name: aws-ecs-job
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-ecs-job
+  aws-ecs-job-fargate:
+    name: aws-ecs-job-fargate
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-ecs-job-fargate
+  aws-ecs-service:
+    name: aws-ecs-service
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-ecs-service
+  aws-ecs-service-fargate:
+    name: aws-ecs-service-fargate
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-ecs-service-fargate
+  aws-efs-volume:
+    name: aws-efs-volume
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-efs-volume
+  aws-iam-ecs-task-role:
+    name: aws-iam-ecs-task-role
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-iam-ecs-task-role
+  aws-iam-group-assume-role:
+    name: aws-iam-group-assume-role
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-iam-group-assume-role
+  aws-iam-group-console-login:
+    name: aws-iam-group-console-login
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-iam-group-console-login
+  aws-iam-instance-profile:
+    name: aws-iam-instance-profile
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-iam-instance-profile
+  aws-iam-password-policy:
+    name: aws-iam-password-policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-iam-password-policy
+  aws-iam-policy-cwlogs:
+    name: aws-iam-policy-cwlogs
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-iam-policy-cwlogs
+  aws-iam-role-bless:
+    name: aws-iam-role-bless
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-iam-role-bless
+  aws-iam-role-cloudfront-poweruser:
+    name: aws-iam-role-cloudfront-poweruser
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-iam-role-cloudfront-poweruser
+  aws-iam-role-crossacct:
+    name: aws-iam-role-crossacct
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-iam-role-crossacct
+  aws-iam-role-ec2-poweruser:
+    name: aws-iam-role-ec2-poweruser
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-iam-role-ec2-poweruser
+  aws-iam-role-ecs-poweruser:
+    name: aws-iam-role-ecs-poweruser
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-iam-role-ecs-poweruser
+  aws-iam-role-infraci:
+    name: aws-iam-role-infraci
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-iam-role-infraci
+  aws-iam-role-poweruser:
+    name: aws-iam-role-poweruser
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-iam-role-poweruser
+  aws-iam-role-readonly:
+    name: aws-iam-role-readonly
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-iam-role-readonly
+  aws-iam-role-route53domains-poweruser:
+    name: aws-iam-role-route53domains-poweruser
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-iam-role-route53domains-poweruser
+  aws-iam-role-security-audit:
+    name: aws-iam-role-security-audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-iam-role-security-audit
+  aws-param:
+    name: aws-param
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-param
+  aws-params-reader-policy:
+    name: aws-params-reader-policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-params-reader-policy
+  aws-params-secrets-setup:
+    name: aws-params-secrets-setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-params-secrets-setup
+  aws-params-writer:
+    name: aws-params-writer
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-params-writer
+  aws-redis-node:
+    name: aws-redis-node
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-redis-node
+  aws-s3-private-bucket:
+    name: aws-s3-private-bucket
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-s3-private-bucket
+  aws-single-page-static-site:
+    name: aws-single-page-static-site
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-single-page-static-site
+  aws-ssm-params:
+    name: aws-ssm-params
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-ssm-params
+  aws-ssm-params-writer:
+    name: aws-ssm-params-writer
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./aws-ssm-params-writer
+  bless-ca:
+    name: bless-ca
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./bless-ca
+  bless-ca_test:
+    name: bless-ca_test
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./bless-ca/test
+  github-webhooks-to-s3:
+    name: github-webhooks-to-s3
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./github-webhooks-to-s3
+  module-template:
+    name: module-template
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./module-template
+  testutil:
+    name: testutil
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - run: env
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.12.24
+        terraform_wrapper: "false"
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.14.3
+    - run: aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-1
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-1
+    - run: aws --profile cztack-ci-1 sts get-caller-identity
+    - run: aws configure set aws_access_key_id ${{ secrets.CI2_AWS_ACCESS_KEY_ID }}
+        --profile cztack-ci-2
+    - run: aws configure set aws_secret_access_key ${{ secrets.CI2_AWS_SECRET_ACCESS_KEY
+        }} --profile cztack-ci-2
+    - run: aws --profile cztack-ci-2 sts get-caller-identity
+    - run: make test-ci TEST=./testutil

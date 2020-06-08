@@ -106,6 +106,6 @@ func Ci() error {
 	if err != nil {
 		return err
 	}
-	ioutil.WriteFile(filepath.Join(".github", "workflows", "ci2.yml"), yml, 0644)
+	ioutil.WriteFile(filepath.Join(".github", "workflows", "ci.yml"), yml, 0644)
 	return nil
 }
