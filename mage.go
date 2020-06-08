@@ -24,8 +24,6 @@ type ciStep struct {
 	Run  string            `yaml:"run,omitempty"`
 	Uses string            `yaml:"uses,omitempty"`
 	With map[string]string `yaml:"with,omitempty"`
-	// TODO
-	// With ciStepWith
 }
 
 type ciConfig struct {
@@ -42,20 +40,14 @@ func newCi(name string) ciConfig {
 	}
 }
 
+// Ci generates a ci configurations for this repo.
 func Ci() error {
-	//  for each module directory
-	//    write GHA ci file
-
 	out, err := exec.Command("go", "list", "./...").Output()
 	if err != nil {
 		return err
 	}
 
-	fmt.Println(string(out))
 	packages := strings.Split(string(out), "\n")
-
-	fmt.Println(packages)
-	fmt.Println(len(packages))
 
 	ci := newCi("CI")
 
