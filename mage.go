@@ -89,6 +89,8 @@ func Ci() error {
 							"go-version": "1.14.3",
 						},
 					},
+					{Run: "wget -t 10 -O terraform-provider-bless.tar https://github.com/chanzuckerberg/terraform-provider-bless/releases/download/v0.2.10/terraform-provider-bless_0.2.10_linux_amd64.tar.gz"},
+					{Run: "tar -C ~/bin -xzf terraform-provider-bless.tar"},
 					{Run: "aws configure set aws_access_key_id ${{ secrets.CI1_AWS_ACCESS_KEY_ID }} --profile cztack-ci-1"},
 					{Run: "aws configure set aws_secret_access_key ${{ secrets.CI1_AWS_SECRET_ACCESS_KEY }} --profile cztack-ci-1"},
 					{Run: "aws --profile cztack-ci-1 sts get-caller-identity"},
