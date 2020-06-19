@@ -62,3 +62,9 @@ variable public_access_block {
   type    = bool
   default = true
 }
+
+variable canonical_id_and_permissions {
+  type =  map
+  default = {}
+  description = "A map of canonical user ID to permissions when we use grant ACL for the bucket. Used when we want to grant certain permissions to certain AWS accounts with canonical ID."
+}

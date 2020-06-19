@@ -1,4 +1,6 @@
 locals {
+  use_grant_acl = length(var.canonical_id_and_permissions) == 0? false: true
+
   tags = {
     project   = var.project
     env       = var.env
@@ -10,7 +12,8 @@ locals {
 
 resource "aws_s3_bucket" "bucket" {
   bucket = var.bucket_name
-  acl    = "private"
+  # Using acl will confliect with using grant
+  acl    = local.use_grant_acl? null: "private"
 
   policy = data.aws_iam_policy_document.bucket_policy.json
 
@@ -65,6 +68,19 @@ resource "aws_s3_bucket" "bucket" {
           storage_class = lookup(lifecycle_rule.value.noncurrent_version_transition, "storage_class", null)
         }
       }
+    }
+  }
+
+  dynamic "grant" {
+    for_each = [for pair in var.canonical_id_and_permissions: {
+      id   = pair.canonical_id
+      permissions = pair.permissions
+    }]
+
+    content {
+      id          = grant.value.id
+      permissions = grant.value.permissions
+      type  = "CanonicalUser"
     }
   }
 
