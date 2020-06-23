@@ -64,7 +64,7 @@ variable public_access_block {
 }
 
 variable canonical_id_and_permissions {
-  type =  list(object({ canonical_id : string, permissions : list(string) }))
+  type    = list(object({ canonical_id : string, permissions : list(string) }))
   default = []
   # A smaple of this variables is: 
   # settings = [
