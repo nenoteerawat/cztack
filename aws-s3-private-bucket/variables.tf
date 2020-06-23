@@ -63,17 +63,17 @@ variable public_access_block {
   default = true
 }
 
-variable canonical_id_and_permissions {
-  type    = list(object({ canonical_id : string, permissions : list(string) }))
+variable canonical_user_id_and_permissions {
+  type    = list(object({ canonical_user_id : string, permissions : list(string) }))
   default = []
-  # A smaple of this variables is: 
-  # settings = [
+  # A smaple of canonical_user_id_and_permissions variable is: 
+  # canonical_user_id_and_permissions = [
   #   {
-  #     canonical_id = "user1-canonical-user-ID"
+  #     canonical_user_id = "user1-canonical-user-ID"
   #     permissions = ["FULL_CONTROL"]
   #   },
   #   {
-  #     canonical_id = "user2-canonical-user-ID"
+  #     canonical_user_id = "user2-canonical-user-ID"
   #     permissions = ["READ", "WRITE"]
   #   },
   # ]
